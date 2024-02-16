@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- openwrt-22.03
+
+pool:
+  vmImage: ubuntu-22.04
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    bash onion_buildenv setup_imagebuilder
+    bash onion_buildenv build_all_firmware
+  displayName: 'bake vanilla firmware'
